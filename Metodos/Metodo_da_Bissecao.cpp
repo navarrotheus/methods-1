@@ -4,13 +4,9 @@
 
 #include "Bisection.hpp"
 
-
-double fx(double x, int tamanho, vector<double> poli);
-double bisection(double interA, double interB, double erro, int maxIteration);
-
 int main(void){
 
-  vector<double> polinomio = criarPoli();
+  vector<double> polinomio {1, 30, 49, 12, 5, 27};
 
   cout << "Valor aproximado da raiz: " << bisection(-1000000000, 1000000000, 0.0000000000001, 100, polinomio) << "\n";
   return 0;

@@ -42,14 +42,14 @@ double bisection(double interA, double interB, double erro, int maxIteration, ve
   for (int i=0; i<maxIteration; i++){
     (fa > 0 && fm < 0) || (fa < 0 && fm > 0) ? interB = xMedio : interA = xMedio;
 
-    fa = fx( interA, tamPoli, polino);
-    fb = fx( interB, tamPoli, polino);
+    fa = fx(interA, tamPoli, polino);
+    fb = fx(interB, tamPoli, polino);
     xMedio = (interA + interB)/2;
-    fm = fx( xMedio, tamPoli, polino);
+    fm = fx(xMedio, tamPoli, polino);
 
     if (abs(fm) <= erro){
       end = clock();
-      cout << " \n tempo de execuçao: " << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";
+      cout << " \n" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";
       return xMedio;
     }
   }
