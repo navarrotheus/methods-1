@@ -19,5 +19,7 @@ quantidade c de CO2 de uma determinada reação química dada. O sistema deve at
 4. Calibrar o sistema usando como padrão a4=1, a3=-5, a2=6, a1=4, a0=-8, e p=3.
 5. Fornecer um quadro resposta, com quantidade calculada para cada método dado.
 6.  Fornecer um quadro comparativo, com todos os dados para cada método dado.
-Dados de entrada: n (número de reações), ak (k=0 a 4) e p (para cada opção) e ε (precisão).
-Dados de saída: quadros resposta (com c para cada reação e método) e comparativo
+
+**Dados de entrada**: n (número de reações), ak (k=0 a 4) e p (para cada opção) e ε (precisão).
+
+**Dados de saída**: quadros resposta (com c para cada reação e método) e comparativo
