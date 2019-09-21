@@ -1,7 +1,7 @@
 # Trabalho 1
 
 Uma determinada reação química produz uma quantidade c de CO2 medida em ppm (parte por milhão) dada pela equação polinomial:
->f(c) = a4c^4 + a3c^3 + a2c^2 + a1c + a0
+>f(c) = a 4c^4 + a3c^3 + a2c^2 + a1c + a0
 
 Se ξ é uma raiz de f(x) = 0 com multiplicidade p, dados xo e ε, para cada passo o método de Newton-Raphson
 é dado por:
@@ -20,6 +20,10 @@ quantidade c de CO2 de uma determinada reação química dada. O sistema deve at
 5. Fornecer um quadro resposta, com quantidade calculada para cada método dado.
 6.  Fornecer um quadro comparativo, com todos os dados para cada método dado.
 
-**Dados de entrada**: n (número de reações), ak (k=0 a 4) e p (para cada opção) e ε (precisão).
+**Dados de entrada**: 
+* n (número de reações);
+* ak (k=0 a 4);
+* p (para cada opção);
+* ε (precisão);
 
 **Dados de saída**: quadros resposta (com c para cada reação e método) e comparativo
