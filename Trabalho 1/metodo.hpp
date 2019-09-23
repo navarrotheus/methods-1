@@ -7,26 +7,35 @@ double derivateCalculatePxHorner(vector<double> polynomial, double value);
 double calculatePxHorner(vector<double> polynomial, double value);
 
 void methodNewton(vector<double> polynomial, double chute, double erro, double maxIteration){
+  clock_t start, end;
+  start = clock();
+
   double Px, DerivatePx;
   Px = calculatePxHorner(polynomial, chute);
   double var = chute;
   if (abs(Px) > erro){
     DerivatePx = derivateCalculatePxHorner(polynomial, chute);
     for(int i=0; i<maxIteration; i++){
-      cout << "Valor do X: " << var << " //// Valor do P(x):" << Px << "\n";
+      //cout << "Valor do X: " << var << " //// Valor do P(x):" << Px << "\n";
       var = var -1*(Px/DerivatePx);
       Px = calculatePxHorner(polynomial, var);
       if(abs(Px) <= erro){
+        end = clock();
+        cout << " \n" << "Tempo de execução:" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";  
         cout << "Deu certo com: " << i+1 << " repetições" << "\n";
-        cout << "O valor da raiz é: " << var << "Valor do P(x):" << Px << "\n";
+        cout << "O valor da raiz é: " << var << " Valor do P(x):" << Px << "\n";
         return;
       }
       DerivatePx = derivateCalculatePxHorner(polynomial, var);
     }
+    end = clock();
+    cout << " \n" << "Tempo de execução:" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";
     cout << "Não deu em nada \n";
     cout << "Raiz mais proxima: " << var << "\n";
   }
   else {
+    end = clock();
+    cout << " \n" << "Tempo de execução:" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";    
     cout << "Chutou muito bem \n";
     cout << "Raiz: " << chute << "\n";
     cout << Px;

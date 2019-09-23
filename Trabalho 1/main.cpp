@@ -11,7 +11,7 @@ int main(){
   // O indice de cada número representa o grau i-1 na derivada p(x)
   //formPolynomial();
 
-  methodNewton(formPolynomial(), 0.5, 0.0001, 5);
+  methodNewton(formPolynomial(), 10000000000000000, 0.0001, 1000000000000);
 
   return 0;
 }
