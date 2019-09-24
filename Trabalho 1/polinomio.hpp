@@ -36,8 +36,17 @@ vector<double> formDerivate(vector<double> polynomial){
 }
 
 void printPoly(vector<double> polynomial){
-  for(auto i = polynomial.begin(); i != polynomial.end();i++){
-    cout << *i << " ";
+  cout << "\n Polinomio P(x): ";
+  for(int i=0; i<4; i++){
+    cout << polynomial[(i+1)*2] << " ";
+  }
+  cout << "\n Derivado de P(x): ";
+  for(int i=0; i< 4; i++){
+    cout << polynomial[(i*2)+1] << " ";
+  }
+  cout << "\n Meu vetor: ";
+  for(int i=0; i< int(polynomial.size()); i++){
+    cout << polynomial[i] << " ";
   }
   cout << "\n";
 }
