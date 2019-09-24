@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include "polinomio.hpp"
+
+void printPoly(vector<double> polynomial);
 
 using namespace std;
 
@@ -16,14 +19,24 @@ void methodNewton(vector<double> polynomial, double chute, double erro, double m
   if (abs(Px) > erro){
     DerivatePx = derivateCalculatePxHorner(polynomial, chute);
     for(int i=0; i<maxIteration; i++){
-      //cout << "Valor do X: " << var << " //// Valor do P(x):" << Px << "\n";
+
+      cout << "//////////////////////////////////////////////////" << "\n";
+      cout << "Passo: " << i << "\n"; 
+      cout << "Valor do X: " << var << "\n";
+      cout << "Valor do P(x):" << Px << "\n";
+      cout << "Valor da derivada: " << DerivatePx << "\n";
+      cout << "//////////////////////////////////////////////////" << "\n \n";
+
       var = var -1*(Px/DerivatePx);
       Px = calculatePxHorner(polynomial, var);
       if(abs(Px) <= erro){
         end = clock();
-        cout << " \n" << "Tempo de execução:" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";  
+        cout << " \n" << "Tempo de execução: " << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";
+        printPoly(polynomial);
         cout << "Deu certo com: " << i+1 << " repetições" << "\n";
-        cout << "O valor da raiz é: " << var << " Valor do P(x):" << Px << "\n";
+        cout << "Valor da Raiz: " << var << "\n";
+        cout << "Valor do P(x): " << Px << "\n";
+        cout << "Valor da derivadaP(x): " << DerivatePx << "\n";
         return;
       }
       DerivatePx = derivateCalculatePxHorner(polynomial, var);

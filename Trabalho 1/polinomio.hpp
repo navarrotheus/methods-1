@@ -9,7 +9,7 @@ void printPoly(vector<double> polynomial);
 vector<double> formPolynomial(){
   
   std::vector<double> polynomial (9, 0);
-  int var;
+  double var;
   cout << "teste" << "\n";  
   for(int i=0; i<5; i++){
     cout << "Coeficiente de grau: " << i << "\n";
