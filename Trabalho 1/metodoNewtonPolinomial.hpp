@@ -2,18 +2,20 @@
 
 #include <iostream>
 #include <vector>
-#include "polinomio.hpp"
+#include<cmath>
 
 using namespace std;
 
 //Funcao declarada em polinomio.hpp
 void printPoly(vector<double> polynomial);
 //Funcoes declaradas nesse arquivo
-void methodNewton(vector<double> polynomial, double chute, double erro, double maxIteration);
+void methodNewtonPolynomila(vector<double> polynomial, double chute, double erro, double maxIteration);
 double derivateCalculatePxHorner(vector<double> polynomial, double value);
 double calculatePxHorner(vector<double> polynomial, double value);
+double calculateDerivatePx(vector<double> polynomial, double value);
+double calculatePx(vector<double> polynomial, double value);
 //Metodo de Newton para polinomios
-void methodNewton(vector<double> polynomial, double chute, double erro, double maxIteration){
+void methodNewtonPolynomila(vector<double> polynomial, double chute, double erro, double maxIteration){
   //Calcula o tempo de execucao
   clock_t start, end;
   start = clock();
@@ -41,14 +43,13 @@ void methodNewton(vector<double> polynomial, double chute, double erro, double m
         end = clock();
         cout << " \n" << "Tempo de execução: " << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";
         //Prits das informacoes obtidas
-        printPoly(polynomial);
         cout << "Deu certo com: " << i+1 << " repetições" << "\n";
         cout << "Valor da Raiz: " << var << "\n";
         cout << "Valor do P(x): " << Px << "\n";
         cout << "Valor da derivadaP(x): " << DerivatePx << "\n";
         return;
       }
-      //Realiza o passo do metodo 
+      //Realiza o passo do metodo
       DerivatePx = derivateCalculatePxHorner(polynomial, var);
     }
     //Calculo do tempo de execucao
@@ -69,6 +70,7 @@ void methodNewton(vector<double> polynomial, double chute, double erro, double m
   }
   return;
 }
+
 //Utiliza o metodo de Horner para estruturar as multiplicacoes
 double calculatePxHorner(vector<double> polynomial, double value){
   return ( ( (polynomial[8]*value + polynomial[6])*value + polynomial[4])*value + polynomial[2])*value + polynomial[0];
@@ -76,4 +78,22 @@ double calculatePxHorner(vector<double> polynomial, double value){
 //Utiliza o metodo de Horner para estruturar as multiplicacoes
 double derivateCalculatePxHorner(vector<double> polynomial, double value){
   return ( ( (polynomial[7]*value+polynomial[5])*value + polynomial[3])*value + polynomial[1]);
+}
+
+//Metodo de calculo normal (Mais lento), não utiliza Horner
+double calculateDerivatePx(vector<double> polynomial, double value){
+  double res = 0, powteste = 0;
+  for(int i=1; i<9;i=i + 2){
+    res += polynomial[i]*pow(value, powteste);
+    powteste += 1; 
+  }
+  return res;
+}
+//Metodo de calculo normal (Mais lento), não utiliza Horner
+double calculatePx(vector<double> polynomial, double value){
+  double res;
+  for(int i=0; i<5;i++){
+    res = res + polynomial[i*2]*pow(value, i);
+  }
+  return res;
 }
