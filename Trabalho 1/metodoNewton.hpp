@@ -14,7 +14,7 @@ double derivateCalculatePxHorner(vector<double> polynomial, double value);
 double calculatePxHorner(vector<double> polynomial, double value);
 double calculateDerivatePx(vector<double> polynomial, double value);
 double calculatePx(vector<double> polynomial, double value);
-double calculatePxSec(vector<double> polynomial, double value);
+double calculateSecPx(vector<double> polynomial, double value);
 //Metodo de Newton para polinomios
 void methodNewtonPolynomial(vector<double> polynomial, double chute, double erro, double maxIteration){
   //Calcula o tempo de execucao
@@ -94,8 +94,12 @@ double calculateDerivatePx(vector<double> polynomial, double value){
 double calculatePx(vector<double> polynomial, double value){
   double res;
   for(int i=0; i<5;i++){
-    res = res + polynomial[i*2]*pow(value, i);
+    res += polynomial[i*2]*pow(value, i);
   }
   return res;
 }
 
+
+double calculateSecPx(vector<double> polynomial, double value1, double value2){
+  return (calculatePx(polynomial, value1) - calculatePx(polynomial, value2))/(value1 - value2);
+}
