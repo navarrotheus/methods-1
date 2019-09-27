@@ -9,13 +9,14 @@ using namespace std;
 //Funcao declarada em polinomio.hpp
 void printPoly(vector<double> polynomial);
 //Funcoes declaradas nesse arquivo
-void methodNewtonPolynomila(vector<double> polynomial, double chute, double erro, double maxIteration);
+void methodNewtonPolynomial(vector<double> polynomial, double chute, double erro, double maxIteration);
 double derivateCalculatePxHorner(vector<double> polynomial, double value);
 double calculatePxHorner(vector<double> polynomial, double value);
 double calculateDerivatePx(vector<double> polynomial, double value);
 double calculatePx(vector<double> polynomial, double value);
+double calculatePxSec(vector<double> polynomial, double value);
 //Metodo de Newton para polinomios
-void methodNewtonPolynomila(vector<double> polynomial, double chute, double erro, double maxIteration){
+void methodNewtonPolynomial(vector<double> polynomial, double chute, double erro, double maxIteration){
   //Calcula o tempo de execucao
   clock_t start, end;
   start = clock();
@@ -97,3 +98,4 @@ double calculatePx(vector<double> polynomial, double value){
   }
   return res;
 }
+
