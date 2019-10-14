@@ -10,6 +10,7 @@ void alinhar(string nome, double max);
 void bonito(double nome, int max);
 void alinharPasso(string nome, double max);
 void linha(double max);
+void mountComparativeTable(vector<double> tabelaPoly, vector<double> tabelaNewton, vector<double> tabelaScante);
 
 void mountTable (vector<vector<double>> tabela){
 // valor do X  //// valor Px //// valor da derivada
@@ -72,4 +73,45 @@ void linha(double max){
     cout <<"-";
   }
   cout << "\n";
+}
+
+//Tabela Comparativa, recebe como parâmetro a útlima linha do vetor matriz de cada método
+void mountComparativeTable(vector<double> tabelaPoly, vector<double> tabelaNewton, vector<double> tabelaScante){
+    /*
+      Elementos dos vetores: [1] guarda a última raiz encontrda,[2] guada o f(c)
+      dessa raiz, [0] guarda o numero da ultima iteração
+
+      "bonito(string, int)" ajusta a largura de uma célula a partir de um valor condizente
+      com a coluna
+    
+    */
+    string linha = "------------------------------------------------------------------------------------------";
+    cout << linha << endl;
+    cout << "Método                 || Qtd encontrada (c)  | f(c)          | Total de iterações" << endl;
+    cout << linha << endl;
+
+    cout << "Newton para polinômios || ";
+    bonito(tabelaPoly[1], 20);
+    cout << "| ";
+    bonito(tabelaPoly[2], 14);
+    cout << "| ";
+    cout << " " << to_string((int)round(tabelaPoly[0])) << endl;
+    cout << linha << endl;
+
+    cout << "Newton-Rapson          || ";
+    bonito(tabelaNewton[1], 20);
+    cout << "| ";
+    bonito(tabelaNewton[2], 14);
+    cout << "| ";
+    cout << " " << to_string((int)round(tabelaNewton[0])) << endl;
+    cout << linha << endl;
+
+    cout << "Secante                || ";
+    bonito(tabelaScante[1], 20);
+    cout << "| ";
+    bonito(tabelaScante[2], 14);
+    cout << "| ";
+    cout << " " << to_string((int)round(tabelaScante[0])) << endl;
+    cout << linha << endl;
+
 }
