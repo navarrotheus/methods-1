@@ -25,13 +25,13 @@ vector<vector<double>> methodNewtonPolynomialHorner(vector<double> polynomial, d
   //Variaveis para armazenar os calulos
   double Px, DerivatePx, var = chute;
   Px = calculatePxHorner(polynomial, var);
+  DerivatePx = derivateCalculatePxHorner(polynomial, chute);
   //Vetor que contem todos os dados do calculo do metodo utilizando Horner
   vector<vector<double>> QuadroRespostaHorner;
   //Suporte
   vector<double> Linha = {};
   //Verifica se o chute foi muito bom 
   if (abs(Px) > erro){ //Se for maior
-    DerivatePx = derivateCalculatePxHorner(polynomial, chute);
     //Comeco dos passos ate o numero maximo de interacoes
     for(int i=0; i<maxIteration; i++){
       QuadroRespostaHorner.push_back(Linha);
@@ -70,10 +70,16 @@ vector<vector<double>> methodNewtonPolynomialHorner(vector<double> polynomial, d
     end = clock();
     cout << " \n" << "Tempo de execução:" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";    
     //Caso o chute seja muito certeiro
-    cout << "Chutou muito bem \n";
+    QuadroRespostaHorner.push_back(Linha);
+    QuadroRespostaHorner[0].push_back(0);
+    QuadroRespostaHorner[0].push_back(chute);
+    QuadroRespostaHorner[0].push_back(Px);
+    QuadroRespostaHorner[0].push_back(DerivatePx);
+    cout << "Chutou muito bem\n";
     cout << "Raiz: " << chute << "\n";
     cout << "Valor do P(x): " << Px;
   }
+  cout << "teste";
   return QuadroRespostaHorner;
 }
 
@@ -136,6 +142,11 @@ vector<vector<double>> methodNewtonPolynomial(vector<double> polynomial, double 
     //Calculo do tempo de execucao
     end = clock();
     cout << " \n" << "Tempo de execução:" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";    
+      QuadroResposta.push_back(Linha);
+    QuadroResposta[0].push_back(0);
+    QuadroResposta[0].push_back(chute);
+    QuadroResposta[0].push_back(Px);
+    QuadroResposta[0].push_back(DerivatePx);
     //Caso o chute seja muito certeiro
     cout << "Chutou muito bem \n";
     cout << "Raiz: " << chute << "\n";
@@ -163,6 +174,7 @@ vector<vector<double>> methodNewtonSecant(vector<double> polynomial, double chut
   //Verifica se o chute foi muito bom 
   if (abs(Px) > erro){ //Se for maior
     //Comeco dos passos ate o numero maximo de interacoes
+    cout << "teste";
     for(int i=0; i<maxIteration; i++){
       QuadroResposta.push_back(Linha);
       QuadroResposta[i].push_back(i);
@@ -201,6 +213,11 @@ vector<vector<double>> methodNewtonSecant(vector<double> polynomial, double chut
     //Calculo do tempo de execucao
     end = clock();
     cout << " \n" << "Tempo de execução:" << 1000*(double(end-start) / double(CLOCKS_PER_SEC)) << "\n";    
+    QuadroResposta.push_back(Linha);
+    QuadroResposta[0].push_back(0);
+    QuadroResposta[0].push_back(chute1);
+    QuadroResposta[0].push_back(Px);
+    QuadroResposta[0].push_back(DerivatePx);
     //Caso o chute seja muito certeiro
     cout << "Chutou muito bem \n";
    // cout << "Raiz: " << chute << "\n";
