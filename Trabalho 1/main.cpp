@@ -17,9 +17,9 @@ vector<double> formPolynomial();
 //Printar tabela comparativa
 void mountComparativeTable(vector<double> tabelaPoly, vector<double> tabelaNewton, vector<double> tabelaScante);
 //Metodo de Newton para polimonios
-vector<vector<double>> methodNewtonPolynomial(vector<double> polynomial, double chute, double erro, double maxIteration);
+vector<vector<double>> methodNewtonPolynomial(vector<double> polynomial, double chute, double erro, double maxIteration, int multi);
 vector<vector<double>> methodNewtonPolynomialHorner(vector<double> polynomial, double chute, double erro, double maxIteration);
-vector<vector<double>> methodNewtonSecant(vector<double> polynomial, double chute1, double chute2, double erro, double maxIteration);
+vector<vector<double>> methodNewtonSecant(vector<double> polynomial, double chute1, double chute2, double erro, double maxIteration, int multi);
 int main(){
   int qtdFunc;
   vector<vector<double>> funcoes;
@@ -37,11 +37,13 @@ int main(){
 vector<vector<double>> moontarTudo(vector<vector<double>> funcoes){
   vector<vector<double>> respostaCompar;
 
-  int maxInteration = 5;
+  int maxInteration = 100, multi;
   double erro = 0.001;
 
   for(int i=0; i<funcoes.size(); i++){
     double chute = calculateKick(funcoes[i]);
+    cout << "Qual a multiplicidade: ";
+    cin >> multi;
 
     vector <double> teste = funcoes[i];
     cout << "Função: "; printPoly(teste); cout << "Metodo de Newton usando calculo de polinomico com Horner:";
@@ -49,11 +51,12 @@ vector<vector<double>> moontarTudo(vector<vector<double>> funcoes){
     mountTable(tabelaPoly);
     
     cout << "Função: "; printPoly(teste); cout << "Metodo de Newton:";
-    vector <vector<double>> tabelaNewton = methodNewtonPolynomial(teste, chute, erro, maxInteration);
+    
+    vector <vector<double>> tabelaNewton = methodNewtonPolynomial(teste, chute, erro, maxInteration, multi);
     mountTable(tabelaNewton);
     
     cout << "Função: "; printPoly(teste); cout<< "Metodo de Secante:";
-    vector <vector<double>> tabelaSecante = methodNewtonSecant(teste, (chute*2), chute, erro, maxInteration);
+    vector <vector<double>> tabelaSecante = methodNewtonSecant(teste, (chute*2), chute, erro, maxInteration, multi);
     mountTable(tabelaSecante);
 
     respostaCompar.push_back(teste);
