@@ -88,7 +88,7 @@ vector<vector<double>> methodNewtonPolynomialHorner(vector<double> polynomial, d
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 //Metodo de Newton para polinomios SEM HORNER
-vector<vector<double>> methodNewtonPolynomial(vector<double> polynomial, double chute, double erro, double maxIteration){
+vector<vector<double>> methodNewtonPolynomial(vector<double> polynomial, double chute, double erro, double maxIteration, int multi){
   //Calcula o tempo de execucao
   clock_t start, end;
   start = clock();
@@ -105,15 +105,13 @@ vector<vector<double>> methodNewtonPolynomial(vector<double> polynomial, double 
     //Comeco dos passos ate o numero maximo de interacoes
     for(int i=0; i<maxIteration; i++){
       QuadroResposta.push_back(Linha);
-     
-
       QuadroResposta[i].push_back(i);
       QuadroResposta[i].push_back(var);
       QuadroResposta[i].push_back(Px);
       QuadroResposta[i].push_back(DerivatePx);
 
       //Realiza o calculo do Metodo
-      var = var -1*(Px/DerivatePx);
+      var = var -1*((multi)*Px/DerivatePx);
       Px = calculatePx(polynomial, var);
       //Verifica a condicao de parada
       if(abs(Px) <= erro){ //Se estiver menor do que o erro
@@ -160,7 +158,7 @@ vector<vector<double>> methodNewtonPolynomial(vector<double> polynomial, double 
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 //Metodo de Newton para polinomios SEM HORNER
-vector<vector<double>> methodNewtonSecant(vector<double> polynomial, double chute1, double chute2, double erro, double maxIteration){
+vector<vector<double>> methodNewtonSecant(vector<double> polynomial, double chute1, double chute2, double erro, double maxIteration, int multi){
   //Calcula o tempo de execucao
   clock_t start, end;
   start = clock();
@@ -184,7 +182,7 @@ vector<vector<double>> methodNewtonSecant(vector<double> polynomial, double chut
 
       //Realiza o calculo do Metodo
       aux = var;
-      var = var - (Px)/calculateSecPx(polynomial, var, varAnt);
+      var = var - (multi*Px)/calculateSecPx(polynomial, var, varAnt);
       varAnt = aux;
       Px = calculatePx(polynomial, var);
       //Verifica a condicao de parada
