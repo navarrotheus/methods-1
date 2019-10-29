@@ -15,6 +15,8 @@ Desenvolva um sistema para calcular todos as quantidades desejadas com requisito
 1. Calibrar sistema feito usando como padrão a matriz [A] e o vetor {d} dados abaixo;
 1. Fornecer quadro resposta para cada método, variando os valores de [A] e os de {d}.
 
+![Matriz e Vetor](https://github.com/navarrotheus/methods-1-CK0047/blob/master/Trabalho%202/image.png)
+
 **Dados de entrada**: 
 * n (número de quantidades);
 * termos de [A]nxn;
