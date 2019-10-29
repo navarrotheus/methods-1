@@ -1,4 +1,4 @@
-# Trabalho 1
+# Trabalho 1 - Raízes de Equações
 
 Uma determinada reação química produz uma quantidade c de CO2 medida em ppm (parte por milhão) dada pela equação polinomial:
 >f(c) = a 4c^4 + a3c^3 + a2c^2 + a1c + a0
