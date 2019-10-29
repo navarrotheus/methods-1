@@ -9,6 +9,12 @@ O processo é baseado em alguns passos:
 1. depois multiplica-se a i-ésima linha de L pela primeira coluna de U, igualando-se a ai1 de onde se obtém os elementos li1;
 1. repete-se o processo para as demais linhas e colunas até se obter os demais elementos de L e U.
 
+Desenvolva um sistema para calcular todos as quantidades desejadas com requisitos dados a seguir:
+1. Implementar algoritmo para calcular {c} pela fatoração LU, usando a pivotação;
+1. Implementar algoritmo para calcular {c} pela redução de Doolittle, sem pivotação;
+1. Calibrar sistema feito usando como padrão a matriz [A] e o vetor {d} dados abaixo;
+1. Fornecer quadro resposta para cada método, variando os valores de [A] e os de {d}.
+
 **Dados de entrada**: 
 * n (número de quantidades);
 * termos de [A]nxn;
