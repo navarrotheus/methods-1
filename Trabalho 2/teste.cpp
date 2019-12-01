@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "Doolittle.hpp"
+#include "LUFactorization.hpp"
 
 using namespace std;
 
@@ -35,7 +35,7 @@ int main(){
 
     vector<vector<double>> A = {{1, -3, 2}, {-2, 8, -1}, {4, -6, 5}};
     
-    Doolittle fatores(A, 3);
+    LUFactorization fatores(A, 3);
     vector<vector<double>> L = fatores.getLStep(2);
     vector<vector<double>> U = fatores.getUStep(2);
 
@@ -61,5 +61,4 @@ int main(){
     }
     
     return 0;
-
 }

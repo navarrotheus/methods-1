@@ -9,14 +9,14 @@ using namespace std;
 //Usteps é uma lista de matrizes contendo todos os passos para encontrar U
 //Usteps[n - 1] é o resultado de U
 
-class Doolittle {
+class LUFactorization {
   public:
     vector<vector<vector<double>>> LSteps;
     vector<vector<vector<double>>> USteps;
 
     int n;
 
-    Doolittle (vector<vector<double>> A, int n){
+    LUFactorization (vector<vector<double>> A, int n){
 
       this->n = n;
 
@@ -94,7 +94,7 @@ class Doolittle {
       return USteps[s];
     }
 
-    ~Doolittle(){
+    ~LUFactorization(){
         LSteps.erase(LSteps.begin(), LSteps.end());
         USteps.erase(USteps.begin(), USteps.end());
     }
