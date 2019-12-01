@@ -10,18 +10,13 @@ using namespace std;
 //Usteps é uma lista de matrizes contendo todos os passos para encontrar U
 //Usteps[n - 1] é o resultado de U
 
-
-//Obs.: Por enquanto está mostrando só o ultimo passo, usar lista de vetores não funciona
-
-
 class Doolittle {
   public:
-    vector<vector<double>> LSteps;
-    vector<vector<double>> USteps;
+    vector<vector<vector<double>>> LSteps;
+    vector<vector<vector<double>>> USteps;
 
     Doolittle (vector<vector<double>> A, int n){
-      sizeSteps(n);
-
+      
       //Iniciando vetor nulo que receberá os multiplicadores
       vector<vector<double>> L(n);
       for(int i=0; i<n; i++){
@@ -42,7 +37,7 @@ class Doolittle {
         for(int i = j + 1; i < n; i++){
           //Salvando multiplicador;
           m = A[i][j]/pivo;
-          L[i][j] = m * (-1);
+          L[i][j] = m;
           
           //Atualizando linha de A
           //k será um iterador para colunas de A
@@ -51,8 +46,8 @@ class Doolittle {
           }
 
           //Salvando os passos
-          LSteps = L;
-          USteps = A;
+          LSteps.push_back(L);
+          USteps.push_back(A);
         }
 
       }
@@ -60,25 +55,10 @@ class Doolittle {
     };
 
     vector<vector<double>> getLStep(int s){
-      return LSteps;
+      return LSteps[s];
     }
 
     vector<vector<double>> getUStep(int s){
-      return USteps;
-    }
-
-    //Configurando tamanhos dos vetores de passos
-    void sizeSteps(int n){
-      //Configurando tamanhos das listas de passos
-      LSteps.resize(n);
-      USteps.resize(n);
-      
-      for(int i = 0; i < n; i++){
-        //Dandos n linhas parra cada elemento da lista
-        LSteps[i].resize(n);
-        USteps[i].resize(n);
-
-        
-      } 
-    }  
+      return USteps[s];
+    } 
 };
