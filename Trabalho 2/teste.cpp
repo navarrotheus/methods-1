@@ -28,25 +28,11 @@ int main(){
     
     */
 
-    vector<vector<double>> A(3);
+    vector<vector<double>> A = {{1, -3, 2}, {-2, 8, -1}, {4, -6, 5}};
 
-    for(int i = 0; i < 5; i++){
-        A[i].resize(3);
-    }
-
-    A[0][0] = 1;
-    A[0][1] = -3;
-    A[0][2] = 2;
-    A[1][0] = -2;
-    A[1][1] = 8;
-    A[1][2] = -1;
-    A[2][0] = 4;
-    A[2][1] = -6;
-    A[2][2] = 5;
-
-    Doolittle Fatores(A, 3);
-    vector<vector<double>> L = Fatores.getLStep(2);
-    vector<vector<double>> U = Fatores.getUStep(2);
+    Doolittle fatores(A, 3);
+    vector<vector<double>> L = fatores.getLStep(2);
+    vector<vector<double>> U = fatores.getUStep(2);
 
     cout << "Resultado de L:" << endl;
 

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-
 using namespace std;
 
 //Class para redução Doolittle
@@ -60,5 +59,10 @@ class Doolittle {
 
     vector<vector<double>> getUStep(int s){
       return USteps[s];
+    }
+
+    ~Doolittle(){
+        LSteps.erase(LSteps.begin(), LSteps.end());
+        USteps.erase(USteps.begin(), USteps.end());
     } 
 };
