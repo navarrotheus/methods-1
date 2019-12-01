@@ -3,11 +3,11 @@
 
 using namespace std;
 
-//Class para redução Doolittle
-//Lsteps é uma lista de matrizes contendo todos os passos para encontrar L
-//Lsteps[n - 1 é o resultado de L
-//Usteps é uma lista de matrizes contendo todos os passos para encontrar U
-//Usteps[n - 1] é o resultado de U
+//Class para fatoração L U
+//LSteps é uma lista de matrizes contendo todos os passos para encontrar L
+//LSteps[n - 1 é o resultado de L
+//USteps é uma lista de matrizes contendo todos os passos para encontrar U
+//USteps[n - 1] é o resultado de U
 
 class LUFactorization {
   public:
