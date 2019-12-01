@@ -14,8 +14,12 @@ class Doolittle {
     vector<vector<vector<double>>> LSteps;
     vector<vector<vector<double>>> USteps;
 
+    int n;
+
     Doolittle (vector<vector<double>> A, int n){
-      
+
+      this->n = n;
+
       //Iniciando vetor nulo que receberá os multiplicadores
       vector<vector<double>> L(n);
       for(int i=0; i<n; i++){
@@ -37,7 +41,7 @@ class Doolittle {
           //Salvando multiplicador;
           m = A[i][j]/pivo;
           L[i][j] = m;
-          
+
           //Atualizando linha de A
           //k será um iterador para colunas de A
           for(int k=0; k<n; k++){
@@ -53,6 +57,35 @@ class Doolittle {
 
     };
 
+    //solução do sistema linear L(Ux) = b
+    vector<double> solucaoLU(vector<vector<double>> L, vector<vector<double>> U, vector<double> B){
+
+      vector<double> b = B;
+
+      //Ly = b por substituições sucessivas:
+      vector<double> Y;
+      for (int i = 0; i < n; i++){ // calculando Y
+        double soma = 0;
+        for (int j = 0; j < i; j++){
+          soma = soma + L[i][j] * Y[j];
+        }
+        Y.push_back((b[i] - soma)/L[i][i]);
+      }
+
+      //Ux = y por substituições retroativas:
+      vector<double> X(n); //double X[n];
+      X[n-1] = Y[n-1] / U[n-1][n-1];
+      for (int i = n-2; i >= 0 ; i--){ //calculando X
+        double soma = 0;
+        for (int j = i + 1; j < n; j++){
+          soma = soma + U[i][j] * X[j];
+        }
+        X[i] = (Y[i] - soma)/U[i][i]; 
+      }
+      
+      return X;
+    }
+
     vector<vector<double>> getLStep(int s){
       return LSteps[s];
     }
@@ -64,5 +97,5 @@ class Doolittle {
     ~Doolittle(){
         LSteps.erase(LSteps.begin(), LSteps.end());
         USteps.erase(USteps.begin(), USteps.end());
-    } 
+    }
 };
