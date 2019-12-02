@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "LUFactorization.hpp"
+#include "Doolittle.hpp"
 
 using namespace std;
 
@@ -39,6 +40,8 @@ int main(){
     vector<vector<double>> L = fatores.getLStep(2);
     vector<vector<double>> U = fatores.getUStep(2);
 
+    cout << "Fatoração LU:" << endl;
+
     cout << "Resultado de L:" << endl;
 
     cout << L[0][0] << " " << L[0][1] << " " << L[0][2] << endl;
@@ -54,6 +57,33 @@ int main(){
     vector<double> b = {11, -15, 29};
 
     vector<double> X = fatores.solucaoLU(L, U, b);
+
+    cout << "Resultado Xi:" <<endl;
+    for (int i = 0; i < 3; i++){
+        cout << "X" << i << " = " << X[i] << endl; 
+    }
+
+    cout << "Redução Doolittle:" << endl;
+
+    Doolittle D(A, 3);
+
+    L = D.getLStep(2);
+    U = D.getUStep(2);
+
+    cout << "Resultado de L:" << endl;
+
+    cout << L[0][0] << " " << L[0][1] << " " << L[0][2] << endl;
+    cout << L[1][0] << " " << L[1][1] << " " << L[1][2] << endl;
+    cout << L[2][0] << " " << L[2][1] << " " << L[2][2] << endl;
+
+    cout << "Resultado de U:" << endl;
+
+    cout << U[0][0] << " " << U[0][1] << " " << U[0][2] << endl;
+    cout << U[1][0] << " " << U[1][1] << " " << U[1][2] << endl;
+    cout << U[2][0] << " " << U[2][1] << " " << U[2][2] << endl;
+
+
+    X = D.solucaoLU(L, U, b);
 
     cout << "Resultado Xi:" <<endl;
     for (int i = 0; i < 3; i++){
