@@ -152,37 +152,57 @@ class Doolittle: public LUFactorization {
 
 };
 
-//Class para fatoração LU com pivotação (adicionar em breve)
+
+// Struct para pivô
+// pv é valor do pivô
+// l é a posicao(linha) onde se encontra o pivô
+
+struct InfoPivot{
+    double pv;
+    int l;
+};
+
+//Class para fatoração LU com pivotação
 //Class filha da class LUFactorization
+//PVteps guarda uma lista de vetores de permutação
 
 class PivotedLU: public LUFactorization {
   public:
+    vector<vector<int>> PSteps;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
     PivotedLU(vector<vector<double>> A, vector<double> b, int n){
       this->n = n;
       this->A = A;
       this->b = b;
 
-      //Iniciando vetor nulo que receberá os multiplicadores
+      //Iniciando matriz nula que receberá os multiplicadores e vector de permutação;
       vector<vector<double>> L(n);
+      vector<int> P;
+
       for(int i=0; i<n; i++){
         L[i].resize(n);
       }
 
-      //Adicionando diagonal unitária
+      //Adicionando diagonal unitária a L e iniciando vetorr de perutação (1, 2, 3,..., n)
       for(int i=0; i<n; i++){
         L[i][i] = 1;
+        P.push_back(i+1);
       }
 
-      double pivo; //Substituir por escolhar inteligente
+      InfoPivot pivo; //Substituir por escolhar inteligente
       double m;
       for(int j=0; j<n; j++){
-        //Pegando diagonal como pivo;
-        pivo = A[j][j];
+        //Pegando maior valor absoluto como pivo;
+        InfoPivot pivo = findPivot(A, j, n);
+        cout << pivo.pv << endl;
+
+        //Efetuando permutação
+        permutation(P, A, j, pivo.l, n);
+
         //Eliminação de Gauss nas linhas abaixo da diagonal
         for(int i = j + 1; i < n; i++){
           //Salvando multiplicador;
-          m = A[i][j]/pivo;
+          m = A[i][j]/pivo.pv;
           L[i][j] = m;
 
           //Atualizando linha de A
@@ -190,11 +210,12 @@ class PivotedLU: public LUFactorization {
           for(int k=0; k<n; k++){
             A[i][k] = A[i][k] - (m * A[j][k]);
           }
-
-          //Salvando os passos
-          LSteps.push_back(L);
-          USteps.push_back(A);
         }
+
+        //Salvando os passos
+        LSteps.push_back(L);
+        USteps.push_back(A);
+        PSteps.push_back(P);
 
       }
 
@@ -202,5 +223,38 @@ class PivotedLU: public LUFactorization {
       findResult();
 
     };
+
+  private:
+    //Recebe a Matriz, o índice da linha, e n(dimensao) das linhas da matriz. Retorna pv(pivo) e l (linha onde está o pivo)
+    InfoPivot findPivot(vector<vector<double>> matriz, int k, int n){
+      InfoPivot pivo;
+      pivo.pv = abs(matriz[k][k]);
+      pivo.l = k;
+
+      for(int i = k + 1; i < n; i++){
+        if(abs(matriz[i][k]) > pivo.pv){
+          pivo.pv = abs(matriz[i][k]);
+          pivo.l = i;
+        }
+      }
+
+      return pivo;
+    }
+
+    void permutation(vector<int> &P, vector<vector<double>> &matriz, int k, int r, int n){
+      int aux1 = P[k];
+      P[k] = P[r];
+      P[r] = aux1;
+
+      double aux = this->b[k];
+      this->b[k] = this->b[r];
+      this->b[r] = aux;
+
+      for(int j = 0; j < n; j++){
+        aux = matriz[k][j];
+        matriz[k][j] = matriz[r][j];
+        matriz[r][j] = aux;
+      }
+    }
 
 };
