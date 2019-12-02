@@ -46,8 +46,6 @@ int main(){
     b[i] = var;
   }
 
-  cout << det(A, grauA) << endl;
-
   if(det(A, grauA) == 0){
     cout << "Esta matriz é singular e não possui resultados..." << endl;
     return 0;
@@ -119,7 +117,7 @@ int main(){
   cout << "============================================= \n" ;
   unionTable(X2);
   cout << endl;  
-  
+
   return 0;
 
   }
