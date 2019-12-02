@@ -168,7 +168,7 @@ struct InfoPivot{
 
 class PivotedLU: public LUFactorization {
   public:
-    vector<vector<int>> PSteps;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    vector<vector<double>> PSteps;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 
     PivotedLU(vector<vector<double>> A, vector<double> b, int n){
       this->n = n;
@@ -177,7 +177,7 @@ class PivotedLU: public LUFactorization {
 
       //Iniciando matriz nula que receberá os multiplicadores e vector de permutação;
       vector<vector<double>> L(n);
-      vector<int> P;
+      vector<double> P;
 
       for(int i=0; i<n; i++){
         L[i].resize(n);
@@ -194,7 +194,6 @@ class PivotedLU: public LUFactorization {
       for(int j=0; j<n; j++){
         //Pegando maior valor absoluto como pivo;
         InfoPivot pivo = findPivot(A, j, n);
-        cout << pivo.pv << endl;
 
         //Efetuando permutação
         permutation(P, A, j, pivo.l, n);
@@ -224,6 +223,11 @@ class PivotedLU: public LUFactorization {
 
     };
 
+    //Retorna valor de um passo de um vetor de permutação
+    vector<double> getPStep(int s){
+      return PSteps[s];
+    }
+
   private:
     //Recebe a Matriz, o índice da linha, e n(dimensao) das linhas da matriz. Retorna pv(pivo) e l (linha onde está o pivo)
     InfoPivot findPivot(vector<vector<double>> matriz, int k, int n){
@@ -241,8 +245,8 @@ class PivotedLU: public LUFactorization {
       return pivo;
     }
 
-    void permutation(vector<int> &P, vector<vector<double>> &matriz, int k, int r, int n){
-      int aux1 = P[k];
+    void permutation(vector<double> &P, vector<vector<double>> &matriz, int k, int r, int n){
+      double aux1 = P[k];
       P[k] = P[r];
       P[r] = aux1;
 
